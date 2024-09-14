@@ -80,6 +80,58 @@ showWinnersButton.addEventListener('click', (event) => {
     document.getElementById('nav1').classList.add('active'); // nav1 is linked to set3 now
 });
 
+const YOUTUBE_RSS_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCxElbn4HsMP9hYoM_dYjX2g'; 
+const RSS2JSON_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+async function fetchYouTubeVideos() {
+    const response = await fetch(`${RSS2JSON_API_URL}${encodeURIComponent(YOUTUBE_RSS_FEED)}`);
+    const data = await response.json();
+    displayYouTubeVideos(data.items.slice(0, 5));
+}
+
+function displayYouTubeVideos(videos) {
+    const youtubeVideosContainer = document.getElementById('youtube-videos');
+    youtubeVideosContainer.innerHTML = '';
+
+    videos.forEach(video => {
+        const videoCard = document.createElement('div');
+        videoCard.className = 'youtube-video-card';
+        videoCard.innerHTML = `
+            <a href="${video.link}" target="_blank">
+                <img src="${video.thumbnail}" alt="${video.title}" class="youtube-video-thumbnail">
+                <div class="youtube-video-title">${video.title}</div>
+            </a>
+        `;
+        youtubeVideosContainer.appendChild(videoCard);
+    });
+}
+
+
+window.onload = function() {
+    countdown();
+    fetchYouTubeVideos();
+    createBubbles();
+
+    // Participate Popup
+    const participateButton = document.querySelector('.how-to-participate');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupClose = document.getElementById('popup-close');
+
+    participateButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        popupOverlay.style.display = 'flex';
+    });
+
+    popupClose.addEventListener('click', (event) => {
+        event.stopPropagation();
+        popupOverlay.style.display = 'none';
+    });
+
+    popupOverlay.addEventListener('click', (event) => {
+        if (event.target === popupOverlay) {
+            popupOverlay.style.display = 'none';
+        }
+    });
 
 // Close the popup when the close button is clicked
 popupCloseWinners.addEventListener('click', (event) => {
@@ -126,6 +178,27 @@ document.getElementById('nav2').addEventListener('click', function() {
     document.getElementById('nav1').classList.remove('active');
     document.getElementById('nav3').classList.remove('active');
 });
+
+    // How to Claim Prize Popup
+    const howToClaimButton = document.querySelector('.how-to-claim-prize');
+    const popupOverlayClaim = document.getElementById('popup-overlay-claim');
+    const popupCloseClaim = document.getElementById('popup-close-claim');
+
+    howToClaimButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        popupOverlayClaim.style.display = 'flex';
+    });
+
+    popupCloseClaim.addEventListener('click', (event) => {
+        event.stopPropagation();
+        popupOverlayClaim.style.display = 'none';
+    });
+
+    popupOverlayClaim.addEventListener('click', (event) => {
+        if (event.target === popupOverlayClaim) {
+            popupOverlayClaim.style.display = 'none';
+        }
+    });
 
 document.getElementById('nav3').addEventListener('click', function() {
     var set1 = document.getElementById('set1');
@@ -184,3 +257,4 @@ popupOverlayDisclaimer.addEventListener('click', (event) => {
         popupOverlayDisclaimer.style.display = 'none';
     }
 });
+};
