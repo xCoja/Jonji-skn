@@ -36,10 +36,6 @@ function countdown() {
 
 countdown();
 
-
-
-
-
 function createBubbles() {
     const bubblesContainer = document.querySelector('.bubbles-container');
     const bubbleCount = 100;
@@ -58,20 +54,32 @@ function createBubbles() {
     }
 }
 
-
 // Show Winners Popup
 const showWinnersButton = document.querySelector('.show-winners');
 const popupOverlayWinners = document.getElementById('popup-overlay-winners');
 const popupCloseWinners = document.getElementById('popup-close-winners');
 const paginationButtons = document.querySelectorAll('.nav-item'); // Updated class selector for pagination buttons
-const sets = ['set1', 'set2', 'set3']; // Add set3 for the third page of users
+const sets = ['set3', 'set2', 'set1']; // set3 first, set2 second, set1 third
 const dateElement = document.getElementById('popup-date');
 
 // Show the popup when the "Show Winners" button is clicked
 showWinnersButton.addEventListener('click', (event) => {
     event.stopPropagation();
     popupOverlayWinners.style.display = 'flex';
+
+    // Hide set1 and set2, show set3 by default
+    document.getElementById('set1').style.display = 'none';
+    document.getElementById('set2').style.display = 'none';
+    document.getElementById('set3').style.display = 'block'; // Set3 should be the first one to display
+
+    // Set the date for set3
+    dateElement.textContent = '2024-09-14'; // Adjust date to set3
+
+    // Set the correct active navigation button (nav1 now corresponds to set3)
+    paginationButtons.forEach(b => b.classList.remove('active'));
+    document.getElementById('nav1').classList.add('active'); // nav1 is linked to set3 now
 });
+
 
 // Close the popup when the close button is clicked
 popupCloseWinners.addEventListener('click', (event) => {
@@ -86,217 +94,93 @@ popupOverlayWinners.addEventListener('click', (event) => {
     }
 });
 
-// Pagination functionality to switch between the sets of users
-paginationButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        // Hide all sets and display the selected one
-        sets.forEach(set => {
-            document.getElementById(set).style.display = 'none';
-        });
-        document.getElementById(sets[index]).style.display = 'block';
-
-        // Apply scrolling behavior only for set3 (3rd page)
-        if (index === 2) {
-            document.getElementById('set3').style.overflowY = 'auto';
-        } else {
-            document.getElementById('set3').style.overflowY = 'hidden';
-        }
-
-        // Update the date based on the selected page
-        if (index === 0) dateElement.textContent = '2024-08-31';
-        else if (index === 1) dateElement.textContent = '2024-09-01';
-        else if (index === 2) dateElement.textContent = '2024-09-14';
-
-        // Update active state on pagination buttons
-        paginationButtons.forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-    });
+// Pagination Handling (with correct sets and dates for each page)
+document.getElementById('nav1').addEventListener('click', function() {
+    var set1 = document.getElementById('set1');
+    var set2 = document.getElementById('set2');
+    var set3 = document.getElementById('set3');
+    var title = document.querySelector('.winners-title');
+    
+    set1.style.display = 'none';
+    set2.style.display = 'none';
+    set3.style.display = 'block'; // Set3 should be displayed on nav1 click
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-09-14</span>';
+    
+    document.getElementById('nav1').classList.add('active');
+    document.getElementById('nav2').classList.remove('active');
+    document.getElementById('nav3').classList.remove('active');
 });
 
+document.getElementById('nav2').addEventListener('click', function() {
+    var set1 = document.getElementById('set1');
+    var set2 = document.getElementById('set2');
+    var set3 = document.getElementById('set3');
+    var title = document.querySelector('.winners-title');
+    
+    set1.style.display = 'none';
+    set2.style.display = 'block'; // Set2 should be displayed on nav2 click
+    set3.style.display = 'none';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-31</span>';
+    
+    document.getElementById('nav2').classList.add('active');
+    document.getElementById('nav1').classList.remove('active');
+    document.getElementById('nav3').classList.remove('active');
+});
 
-const YOUTUBE_RSS_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCxElbn4HsMP9hYoM_dYjX2g'; 
-const RSS2JSON_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
+document.getElementById('nav3').addEventListener('click', function() {
+    var set1 = document.getElementById('set1');
+    var set2 = document.getElementById('set2');
+    var set3 = document.getElementById('set3');
+    var title = document.querySelector('.winners-title');
+    
+    set1.style.display = 'block'; // Set1 should be displayed on nav3 click
+    set2.style.display = 'none';
+    set3.style.display = 'none';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-17</span>';
+    
+    document.getElementById('nav3').classList.add('active');
+    document.getElementById('nav1').classList.remove('active');
+    document.getElementById('nav2').classList.remove('active');
+});
 
-async function fetchYouTubeVideos() {
-    const response = await fetch(`${RSS2JSON_API_URL}${encodeURIComponent(YOUTUBE_RSS_FEED)}`);
-    const data = await response.json();
-    displayYouTubeVideos(data.items.slice(0, 5));
-}
+// Contact Popup
+const contactButton = document.getElementById('contact-button');
+const popupOverlayContact = document.getElementById('popup-overlay-contact');
+const popupCloseContact = document.getElementById('popup-close-contact');
 
-function displayYouTubeVideos(videos) {
-    const youtubeVideosContainer = document.getElementById('youtube-videos');
-    youtubeVideosContainer.innerHTML = '';
+contactButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayContact.style.display = 'flex';
+});
 
-    videos.forEach(video => {
-        const videoCard = document.createElement('div');
-        videoCard.className = 'youtube-video-card';
-        videoCard.innerHTML = `
-            <a href="${video.link}" target="_blank">
-                <img src="${video.thumbnail}" alt="${video.title}" class="youtube-video-thumbnail">
-                <div class="youtube-video-title">${video.title}</div>
-            </a>
-        `;
-        youtubeVideosContainer.appendChild(videoCard);
-    });
-}
+popupCloseContact.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayContact.style.display = 'none';
+});
 
-
-window.onload = function() {
-    countdown();
-    fetchYouTubeVideos();
-    createBubbles();
-
-    // Participate Popup
-    const participateButton = document.querySelector('.how-to-participate');
-    const popupOverlay = document.getElementById('popup-overlay');
-    const popupClose = document.getElementById('popup-close');
-
-    participateButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlay.style.display = 'flex';
-    });
-
-    popupClose.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlay.style.display = 'none';
-    });
-
-    popupOverlay.addEventListener('click', (event) => {
-        if (event.target === popupOverlay) {
-            popupOverlay.style.display = 'none';
-        }
-    });
-
-    // Show Winners Popup
-    const showWinnersButton = document.querySelector('.show-winners');
-    const popupOverlayWinners = document.getElementById('popup-overlay-winners');
-    const popupCloseWinners = document.getElementById('popup-close-winners');
-
-    showWinnersButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayWinners.style.display = 'flex';
-    });
-
-    popupCloseWinners.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayWinners.style.display = 'none';
-    });
-
-    popupOverlayWinners.addEventListener('click', (event) => {
-        if (event.target === popupOverlayWinners) {
-            popupOverlayWinners.style.display = 'none';
-        }
-    });
-
-    // Pagination Handling (with correct dates for each page)
-    document.getElementById('nav1').addEventListener('click', function() {
-        var set1 = document.getElementById('set1');
-        var set2 = document.getElementById('set2');
-        var set3 = document.getElementById('set3');
-        var title = document.querySelector('.winners-title');
-        
-        set1.style.display = 'block';
-        set2.style.display = 'none';
-        set3.style.display = 'none';
-        title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;"> 2024-08-31</span>';
-        
-        document.getElementById('nav1').classList.add('active');
-        document.getElementById('nav2').classList.remove('active');
-        document.getElementById('nav3').classList.remove('active');
-    });
-
-    document.getElementById('nav2').addEventListener('click', function() {
-        var set1 = document.getElementById('set1');
-        var set2 = document.getElementById('set2');
-        var set3 = document.getElementById('set3');
-        var title = document.querySelector('.winners-title');
-        
-        set1.style.display = 'none';
-        set2.style.display = 'block';
-        set3.style.display = 'none';
-        title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;"> 2024-08-17</span>';
-        
-        document.getElementById('nav2').classList.add('active');
-        document.getElementById('nav1').classList.remove('active');
-        document.getElementById('nav3').classList.remove('active');
-    });
-
-    document.getElementById('nav3').addEventListener('click', function() {
-        var set1 = document.getElementById('set1');
-        var set2 = document.getElementById('set2');
-        var set3 = document.getElementById('set3');
-        var title = document.querySelector('.winners-title');
-        
-        set1.style.display = 'none';
-        set2.style.display = 'none';
-        set3.style.display = 'block';
-        title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;"> 2024-09-14</span>';
-        
-        document.getElementById('nav3').classList.add('active');
-        document.getElementById('nav1').classList.remove('active');
-        document.getElementById('nav2').classList.remove('active');
-    });
-
-    // How to Claim Prize Popup
-    const howToClaimButton = document.querySelector('.how-to-claim-prize');
-    const popupOverlayClaim = document.getElementById('popup-overlay-claim');
-    const popupCloseClaim = document.getElementById('popup-close-claim');
-
-    howToClaimButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayClaim.style.display = 'flex';
-    });
-
-    popupCloseClaim.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayClaim.style.display = 'none';
-    });
-
-    popupOverlayClaim.addEventListener('click', (event) => {
-        if (event.target === popupOverlayClaim) {
-            popupOverlayClaim.style.display = 'none';
-        }
-    });
-
-    // Contact Popup
-    const contactButton = document.getElementById('contact-button');
-    const popupOverlayContact = document.getElementById('popup-overlay-contact');
-    const popupCloseContact = document.getElementById('popup-close-contact');
-
-    contactButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayContact.style.display = 'flex';
-    });
-
-    popupCloseContact.addEventListener('click', (event) => {
-        event.stopPropagation();
+popupOverlayContact.addEventListener('click', (event) => {
+    if (event.target === popupOverlayContact) {
         popupOverlayContact.style.display = 'none';
-    });
+    }
+});
 
-    popupOverlayContact.addEventListener('click', (event) => {
-        if (event.target === popupOverlayContact) {
-            popupOverlayContact.style.display = 'none';
-        }
-    });
+// Disclaimer Popup
+const disclaimerButton = document.getElementById('disclaimer-button');
+const popupOverlayDisclaimer = document.getElementById('popup-overlay-disclaimer');
+const popupCloseDisclaimer = document.getElementById('popup-close-disclaimer');
 
-    // Disclaimer Popup
-    const disclaimerButton = document.getElementById('disclaimer-button');
-    const popupOverlayDisclaimer = document.getElementById('popup-overlay-disclaimer');
-    const popupCloseDisclaimer = document.getElementById('popup-close-disclaimer');
+disclaimerButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayDisclaimer.style.display = 'flex';
+});
 
-    disclaimerButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayDisclaimer.style.display = 'flex';
-    });
+popupCloseDisclaimer.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayDisclaimer.style.display = 'none';
+});
 
-    popupCloseDisclaimer.addEventListener('click', (event) => {
-        event.stopPropagation();
+popupOverlayDisclaimer.addEventListener('click', (event) => {
+    if (event.target === popupOverlayDisclaimer) {
         popupOverlayDisclaimer.style.display = 'none';
-    });
-
-    popupOverlayDisclaimer.addEventListener('click', (event) => {
-        if (event.target === popupOverlayDisclaimer) {
-            popupOverlayDisclaimer.style.display = 'none';
-        }
-    });
-};
+    }
+});
