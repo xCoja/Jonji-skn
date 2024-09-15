@@ -1231,12 +1231,22 @@ body, html {
 @media (max-width: 528px) {
     @keyframes pump {
         0%, 100% {
-            transform: scale(0.98);
+            transform: scale(0.9);
         }
         50% {
-            transform: scale(1.1);
+            transform: scale(1);
         }
     }
+
+    .image-container img#clashImage,
+    .image-container img#skinraveImage {
+    width: 150px !important;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+ .giving-away {
+    font-size: 14px !important;
+ }
 
     .card {
         
