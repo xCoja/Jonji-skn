@@ -53,6 +53,12 @@ body, html {
     -webkit-text-fill-color: transparent;
 }
 
+.txtt {
+    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .nav a {
     align-items: center;
     font-size: 20px;
@@ -1713,15 +1719,15 @@ abbr {
     background: #181818;
     border-radius: 10px;
     max-width: 600px;
-    height: auto;
+    height: 80vh; /* Fixed height for the popup */
     padding: 20px;
-    padding-bottom: 50px;
     border: 1px solid #444;
     width: 100%;
     margin: 20px auto;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     color: #fff;
+    position: relative; /* Ensure navigation is placed properly */
 }
 
 /* Title */
@@ -1734,6 +1740,8 @@ abbr {
 /* Leaderboard Container */
 .winners-leaderboard {
     margin-top: 20px;
+    height: calc(80vh - 120px); /* Adjust height for leaderboard */
+    overflow-y: auto; /* Enable scrolling */
 }
 
 /* Cards */
@@ -1801,57 +1809,50 @@ abbr {
 .winners-leader-points {
     font-size: 18px;
     font-weight: bold;
-    color: rgb(17, 255, 9);
+    color: rgb(117, 235, 8);
     margin-top: 5px;
     background: #1d1d1d;
     padding: 2px 10px;
     border-radius: 5px;
-    text-shadow: 0 0 6px rgb(17, 255, 9);
+    text-shadow: 0 0 6px rgb(117, 235, 8);
 }
 
-/* Icons */
-.winners-icon {
-    max-width: 20px;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-.diamond-icon2 {
-    transform: translateY(1px) rotate(15deg); /* Adjust '3px' as needed */
     
-}
 
 /* Specific Styling for 1st, 2nd, and 3rd */
 .winners-first-card {
     background: rgb(12, 12, 12);
-    border: 2px solid yellow;
+    border: 1px solid yellow;
 }
 
 .winners-second-card {
     background: rgb(15, 15, 15);
-    border: 2px solid white;
+    border: 1px solid white;
 }
 
 .winners-third-card {
     background: rgb(15, 15, 15);
-    border: 2px solid rgb(94, 50, 1);
+    border: 1px solid rgb(94, 50, 1);
 }
 
+/* Fixed Navigation at the Bottom */
 .navigation {
     text-align: center;
-    margin-top: 10px;
-    
+    position: absolute;
+    bottom: 10px; /* Always stick to the bottom */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-item {
     cursor: pointer;
-    padding: 5px 20px;
+    padding: 5px 15px; /* Reduce padding for a more balanced size */
     text-align: center;
-    margin: 0 5px;
+    margin: 0 8px; /* Keep some space between the buttons */
     font-weight: bold;
     border: 2px solid orange;
     border-radius: 5px;
     color: orange;
-    
 }
 
 .nav-item.active {

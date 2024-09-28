@@ -1,6 +1,6 @@
 function countdown() {
     // Set the start time to yesterday at 4:00 PM CET, converted to UTC
-    var startTimeUTC = Date.UTC(2024, 8, 14, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
+    var startTimeUTC = Date.UTC(2024, 8, 28, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
 
     // Calculate the end time: 14 days after the start time
     var countDownDate = startTimeUTC + (14 * 24 * 60 * 60 * 1000); // 14 days in milliseconds
@@ -59,7 +59,7 @@ const showWinnersButton = document.querySelector('.show-winners');
 const popupOverlayWinners = document.getElementById('popup-overlay-winners');
 const popupCloseWinners = document.getElementById('popup-close-winners');
 const paginationButtons = document.querySelectorAll('.nav-item'); // Updated class selector for pagination buttons
-const sets = ['set3', 'set2', 'set1']; // set3 first, set2 second, set1 third
+const sets = ['set4', 'set2', 'set1']; // Adjusted to reflect that set4 is first, then set2, and set1
 const dateElement = document.getElementById('popup-date');
 
 // Show the popup when the "Show Winners" button is clicked
@@ -67,18 +67,20 @@ showWinnersButton.addEventListener('click', (event) => {
     event.stopPropagation();
     popupOverlayWinners.style.display = 'flex';
 
-    // Hide set1 and set2, show set3 by default
+    // Hide set1, set2, set3 and show set4 by default
     document.getElementById('set1').style.display = 'none';
     document.getElementById('set2').style.display = 'none';
-    document.getElementById('set3').style.display = 'block'; // Set3 should be the first one to display
+    document.getElementById('set3').style.display = 'none';
+    document.getElementById('set4').style.display = 'block'; // Set4 should be the first one to display
 
-    // Set the date for set3
-    dateElement.textContent = '2024-09-14'; // Adjust date to set3
+    // Set the date for set4
+    dateElement.textContent = '2024-09-28'; // Adjust date to set4
 
-    // Set the correct active navigation button (nav1 now corresponds to set3)
+    // Set the correct active navigation button (nav1 now corresponds to set4)
     paginationButtons.forEach(b => b.classList.remove('active'));
-    document.getElementById('nav1').classList.add('active'); // nav1 is linked to set3 now
+    document.getElementById('nav1').classList.add('active'); // nav1 is linked to set4 now
 });
+
 
 const YOUTUBE_RSS_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCxElbn4HsMP9hYoM_dYjX2g'; 
 const RSS2JSON_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
@@ -146,38 +148,98 @@ popupOverlayWinners.addEventListener('click', (event) => {
     }
 });
 
-// Pagination Handling (with correct sets and dates for each page)
+
+
+
+
+// nav1 click event
 document.getElementById('nav1').addEventListener('click', function() {
     var set1 = document.getElementById('set1');
     var set2 = document.getElementById('set2');
     var set3 = document.getElementById('set3');
+    var set4 = document.getElementById('set4');
     var title = document.querySelector('.winners-title');
     
     set1.style.display = 'none';
     set2.style.display = 'none';
-    set3.style.display = 'block'; // Set3 should be displayed on nav1 click
+    set3.style.display = 'none';
+    set4.style.display = 'block'; // Set4 should be displayed on nav1 click
     title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-09-14</span>';
     
+    // Update active class for navigation
     document.getElementById('nav1').classList.add('active');
     document.getElementById('nav2').classList.remove('active');
     document.getElementById('nav3').classList.remove('active');
+    document.getElementById('nav4').classList.remove('active');
 });
 
+// nav2 click event
 document.getElementById('nav2').addEventListener('click', function() {
     var set1 = document.getElementById('set1');
     var set2 = document.getElementById('set2');
     var set3 = document.getElementById('set3');
+    var set4 = document.getElementById('set4');
     var title = document.querySelector('.winners-title');
     
     set1.style.display = 'none';
-    set2.style.display = 'block'; // Set2 should be displayed on nav2 click
-    set3.style.display = 'none';
-    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-31</span>';
+    set2.style.display = 'none';
+    set3.style.display = 'block'; // Set3 should be displayed on nav2 click
+    set4.style.display = 'none';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-09-14</span>';
     
+    // Update active class for navigation
     document.getElementById('nav2').classList.add('active');
     document.getElementById('nav1').classList.remove('active');
     document.getElementById('nav3').classList.remove('active');
+    document.getElementById('nav4').classList.remove('active');
 });
+
+// nav3 click event
+document.getElementById('nav3').addEventListener('click', function() {
+    var set1 = document.getElementById('set1');
+    var set2 = document.getElementById('set2');
+    var set3 = document.getElementById('set3');
+    var set4 = document.getElementById('set4');
+    var title = document.querySelector('.winners-title');
+    
+    set1.style.display = 'block'; // Set1 should be displayed on nav3 click
+    set2.style.display = 'none';
+    set3.style.display = 'none';
+    set4.style.display = 'none';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-15</span>';
+    
+    // Update active class for navigation
+    document.getElementById('nav3').classList.add('active');
+    document.getElementById('nav1').classList.remove('active');
+    document.getElementById('nav2').classList.remove('active');
+    document.getElementById('nav4').classList.remove('active');
+});
+
+// nav4 click event
+document.getElementById('nav4').addEventListener('click', function() {
+    var set1 = document.getElementById('set1');
+    var set2 = document.getElementById('set2');
+    var set3 = document.getElementById('set3');
+    var set4 = document.getElementById('set4');
+    var title = document.querySelector('.winners-title');
+    
+    set1.style.display = 'none';
+    set2.style.display = 'block'; // Set2 should be displayed on nav4 click
+    set3.style.display = 'none';
+    set4.style.display = 'none';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-17</span>';
+    
+    // Update active class for navigation
+    document.getElementById('nav4').classList.add('active');
+    document.getElementById('nav1').classList.remove('active');
+    document.getElementById('nav2').classList.remove('active');
+    document.getElementById('nav3').classList.remove('active');
+});
+
+
+
+
+
 
     // How to Claim Prize Popup
     const howToClaimButton = document.querySelector('.how-to-claim-prize');
@@ -209,7 +271,7 @@ document.getElementById('nav3').addEventListener('click', function() {
     set1.style.display = 'block'; // Set1 should be displayed on nav3 click
     set2.style.display = 'none';
     set3.style.display = 'none';
-    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-17</span>';
+    title.innerHTML = '<span style="color: orange;">Leaderboard</span> - previous winners <span style="color: orange;">2024-08-31</span>';
     
     document.getElementById('nav3').classList.add('active');
     document.getElementById('nav1').classList.remove('active');

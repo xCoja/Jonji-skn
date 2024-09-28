@@ -1,6 +1,6 @@
 function countdown() {
     // Set the start time to yesterday at 4:00 PM CET, converted to UTC
-    var startTimeUTC = Date.UTC(2024, 8, 14, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
+    var startTimeUTC = Date.UTC(2024, 8, 28, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
 
     // Calculate the end time: 14 days after the start time
     var countDownDate = startTimeUTC + (14 * 24 * 60 * 60 * 1000); // 14 days in milliseconds
@@ -58,7 +58,6 @@ function createBubbles() {
     }
 }
 // Show Winners Popup
-// Show Winners Popup
 const showWinnersButton = document.querySelector('.show-winners');
 const popupOverlayWinners = document.getElementById('popup-overlay-winners');
 const popupCloseWinners = document.getElementById('popup-close-winners');
@@ -81,25 +80,6 @@ popupOverlayWinners.addEventListener('click', (event) => {
     }
 });
 
-// Pagination functionality
-paginationButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const page = button.getAttribute('data-page');
-
-        // Hide all pages and show the selected page
-        pages.forEach(p => {
-            if (p.getAttribute('data-page') === page) {
-                p.style.display = 'block';
-            } else {
-                p.style.display = 'none';
-            }
-        });
-
-        // Update active state on pagination buttons
-        paginationButtons.forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-    });
-});
 
 
 
@@ -130,6 +110,8 @@ function displayYouTubeVideos(videos) {
 }
 
 
+
+
 window.onload = function() {
     countdown();
     fetchYouTubeVideos();
@@ -155,6 +137,9 @@ window.onload = function() {
             popupOverlay.style.display = 'none';
         }
     });
+
+
+
 
     // Show Winners Popup
     const showWinnersButton = document.querySelector('.show-winners');
@@ -202,26 +187,27 @@ window.onload = function() {
 
 
     
-    // How to Claim Prize Popup
-    const howToClaimButton = document.querySelector('.how-to-claim-prize');
-    const popupOverlayClaim = document.getElementById('popup-overlay-claim');
-    const popupCloseClaim = document.getElementById('popup-close-claim');
+   // How to Claim Prize Popup
+const howToClaimButton = document.querySelector('.how-to-claim-prize');
+const popupOverlayClaimPrize = document.getElementById('popup-overlay-claim');
+const popupCloseClaimPrize = document.getElementById('popup-close-claim');
 
-    howToClaimButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayClaim.style.display = 'flex';
-    });
+howToClaimButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayClaimPrize.style.display = 'flex';
+});
 
-    popupCloseClaim.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayClaim.style.display = 'none';
-    });
+popupCloseClaimPrize.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayClaimPrize.style.display = 'none';
+});
 
-    popupOverlayClaim.addEventListener('click', (event) => {
-        if (event.target === popupOverlayClaim) {
-            popupOverlayClaim.style.display = 'none';
-        }
-    });
+popupOverlayClaimPrize.addEventListener('click', (event) => {
+    if (event.target === popupOverlayClaimPrize) {
+        popupOverlayClaimPrize.style.display = 'none';
+    }
+});
+
 
     // Contact Popup
     const contactButton = document.getElementById('contact-button');
