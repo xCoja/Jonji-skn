@@ -1881,22 +1881,20 @@ abbr {
     transition: opacity 0.3s ease;
 }
 
+
+
 /* Style when image is inactive */
 .image-container img.inactive {
     opacity: 0.5;
 }
 
-/* White line between the images, going upwards */
-.image-container::before {
-    content: "";
-    position: absolute;
-    top: -10%; /* Move line lower down */
-    height: 100px; /* Length of the line */
-    left: 50%;
-    transform: translateX(-50%);
+.line {
     width: 1px;
+    height: 100px; /* Adjust the height as needed */
     background-color: white;
+    position: relative;
 }
+
 
 
 

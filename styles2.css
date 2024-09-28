@@ -29,7 +29,6 @@ body, html {
     z-index: 1000;
 }
 
-
 .logo {
     position: absolute; /* Position the logo absolutely */
     left: 20px; /* Adjust this value as needed */
@@ -53,18 +52,12 @@ body, html {
     -webkit-text-fill-color: transparent;
 }
 
-.txtt {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .nav a {
     align-items: center;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    background: linear-gradient(to right, rgb(236, 213, 5), rgb(202, 183, 7));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -72,12 +65,6 @@ body, html {
     margin-right: 5px;
 }
 
-.gradient {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-}
 
 
 
@@ -86,7 +73,7 @@ body, html {
     text-align: center;
     padding: 20px;
     position: relative;
-    
+   
 }
 
 .main-content h1 {
@@ -132,7 +119,7 @@ body, html {
 .main-content .how-to-participate {
     font-size: 18px;
     margin-top: 20px;   
-    color: #7bff00;
+    color: #e67e22;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -171,11 +158,11 @@ body, html {
 
 .giving-away .bolded {
     font-weight: 1000;
-    color: #6af828; 
+    color: #f5bf4c; 
 }
 
 .pocetak {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     
@@ -186,15 +173,22 @@ body, html {
 }
 
 .bolded {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 1000;
     vertical-align: middle;
 }
 
+.gradient {
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
 .color-font-weight {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 1000;
@@ -202,14 +196,14 @@ body, html {
 }
 
 .color {
-    background: linear-gradient(to right, rgb(117, 235, 8), rgb(2, 109, 20));
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
     background-clip: text;
     -webkit-text-fill-color: transparent;    
     
 }
 
 .ceo-text {
-    background: rgb(117, 235, 8);
+    background: linear-gradient(to right, rgb(233, 177, 56), rgb(231, 190, 54));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     vertical-align: middle;
@@ -444,11 +438,11 @@ body, html {
 .leader-points {
     font-size: 20px;
     background: rgba(255, 255, 255, 0.1);
-    color: rgb(17, 255, 9);
+    color: #f0a505ce;
     padding: 5px 15px;
     border-radius: 10px;
     margin-top: 10px;
-    text-shadow: 0 0 9px rgb(17, 255, 9);
+    text-shadow: 0 0 9px #ffba59;
 }
 
 
@@ -602,7 +596,7 @@ body, html {
 
 .time-value {
     font-size: 30px;
-    color: rgb(17, 255, 9);
+    color: #e7ac0b;
     font-weight: bold;
     font-family: "Montserrat"
 }
@@ -625,7 +619,7 @@ body, html {
 .show-winners {
     background: transparent;
     color: white;
-    border: 2px solid rgb(17, 255, 9);
+    border: 2px solid #e7ac0b;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -636,7 +630,8 @@ body, html {
 }
 
 .show-winners:hover {
-    border: 2px solid rgb(17, 255, 9);
+    background: #1e1e1e;
+    border: 2px solid #e7ac0b;
     color: white;
     transform: scale(1.1);
     transition: 0.3s ease;
@@ -727,7 +722,6 @@ body, html {
 
 .diamond-icon {
     max-width: 35px;
-    transform: rotate(15deg);
     vertical-align: middle;
 }
 
@@ -767,9 +761,9 @@ body, html {
 }
 
 .prize {
-    color: rgb(17, 255, 9);
-    text-shadow: 0 0 9px rgb(15, 173, 10);
-    width: 200px; 
+    color: #f0b207;
+    text-shadow: 0 0 9px #e2a808;
+    width: 200px;
     background: #101010;
     border-radius: 5px;
     font-weight: 600;
@@ -1101,7 +1095,6 @@ body, html {
     }
     .diamond-icon {
         max-width: 35px;
-        transform: rotate(15deg);
         vertical-align: middle;
     }
 }
@@ -1205,7 +1198,6 @@ body, html {
 
     .diamond-icon {
         max-width: 15px;
-        transform: rotate(15deg);
         vertical-align: middle;
     }
 
@@ -1232,7 +1224,6 @@ body, html {
 
     
 }
-
 
 @media (max-width: 528px) {
     @keyframes pump {
@@ -1332,6 +1323,7 @@ body, html {
     
     
 }
+
 .disclaimer h1 {
     margin-left: 15px;
     font-size: 23px;
@@ -1719,6 +1711,212 @@ abbr {
     background: #181818;
     border-radius: 10px;
     max-width: 600px;
+    height: auto;
+    padding: 20px;
+    padding-bottom: 50px;
+    border: 1px solid #444;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+/* Title */
+.winners-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Leaderboard Container */
+.winners-leaderboard {
+    margin-top: 20px;
+}
+
+/* Cards */
+.winners-card {
+    background: #131313;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
+.winners-card-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Badge */
+.winners-badge {
+    background: #101010;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Avatar Container */
+.winners-avatar-container img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+/* Leader Name */
+.winners-leader-name {
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: 600;
+    background: #101010;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+/* Card Body */
+.winners-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Wagered Amount */
+.winners-leader-amount {
+    font-size: 16px;
+    color: #fff;
+    background: #1d1d1d;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+/* Leader Points */
+.winners-leader-points {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f0af23;
+    margin-top: 5px;
+    background: #1d1d1d;
+    padding: 2px 10px;
+    border-radius: 5px;
+    text-shadow: 0 0 6px #ffba59;
+}
+
+/* Icons */
+.winners-icon {
+    max-width: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.diamond-icon2 {
+    transform: translateY(1px) rotate(15deg); /* Adjust '3px' as needed */
+    
+}
+
+/* Specific Styling for 1st, 2nd, and 3rd */
+.winners-first-card {
+    background: rgb(12, 12, 12);
+    border: 1px solid yellow !important;
+}
+
+.winners-second-card {
+    background: rgb(15, 15, 15);
+    border: 1px solid white !important;
+}
+
+.winners-third-card {
+    background: rgb(15, 15, 15);
+    border: 1px solid rgb(94, 50, 1) !important;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+.nav-item {
+    cursor: pointer;
+    padding: 5px 20px;
+    text-align: center;
+    margin: 0 5px;
+    font-weight: bold;
+    border: 2px solid orange;
+    border-radius: 5px;
+    color: orange;
+    
+}
+
+.nav-item.active {
+    background-color: orange;
+    color: white;
+}
+
+
+
+
+.image-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px; /* Added margin-top as you requested */
+    margin-bottom: 0;
+    position: relative; /* This is needed for the line positioning */
+}
+
+/* Full paths for specific images */
+.image-container img#clashImage,
+.image-container img#skinraveImage {
+    width: 200px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+
+
+/* Style when image is inactive */
+.image-container img.inactive {
+    opacity: 0.5;
+}
+
+.line {
+    width: 1px;
+    height: 100px; /* Adjust the height as needed */
+    background-color: white;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+#winners-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+/* Popup Content */
+.winners-popup-content {
+    background: #181818;
+    border-radius: 10px;
+    max-width: 600px;
     height: 80vh; /* Fixed height for the popup */
     padding: 20px;
     border: 1px solid #444;
@@ -1809,30 +2007,28 @@ abbr {
 .winners-leader-points {
     font-size: 18px;
     font-weight: bold;
-    color: rgb(117, 235, 8);
+    color: #f0af23;
     margin-top: 5px;
     background: #1d1d1d;
     padding: 2px 10px;
     border-radius: 5px;
-    text-shadow: 0 0 6px rgb(117, 235, 8);
+    text-shadow: 0 0 6px #ffba59;
 }
-
-    
 
 /* Specific Styling for 1st, 2nd, and 3rd */
 .winners-first-card {
     background: rgb(12, 12, 12);
-    border: 1px solid yellow;
+    border: 2px solid yellow;
 }
 
 .winners-second-card {
     background: rgb(15, 15, 15);
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 .winners-third-card {
     background: rgb(15, 15, 15);
-    border: 1px solid rgb(94, 50, 1);
+    border: 2px solid rgb(94, 50, 1);
 }
 
 /* Fixed Navigation at the Bottom */
@@ -1859,37 +2055,3 @@ abbr {
     background-color: orange;
     color: white;
 }
-
-
-.image-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px; /* Added margin-top as you requested */
-    margin-bottom: 0;
-    position: relative; /* This is needed for the line positioning */
-}
-
-/* Full paths for specific images */
-.image-container img#clashImage,
-.image-container img#skinraveImage {
-    width: 200px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
-
-
-/* Style when image is inactive */
-.image-container img.inactive {
-    opacity: 0.5;
-}
-
-.line {
-    width: 1px;
-    height: 100px; /* Adjust the height as needed */
-    background-color: white;
-    position: relative;
-}
-
