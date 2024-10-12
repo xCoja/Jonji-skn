@@ -1,6 +1,6 @@
 function countdown() {
     // Set the start time to yesterday at 4:00 PM CET, converted to UTC
-    var startTimeUTC = Date.UTC(2024, 8, 28, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
+    var startTimeUTC = Date.UTC(2024, 9, 12, 14, 0, 0); // Adjusted to UTC: 2024-08-17 14:00:00 UTC
 
     // Calculate the end time: 14 days after the start time
     var countDownDate = startTimeUTC + (14 * 24 * 60 * 60 * 1000); // 14 days in milliseconds
@@ -36,10 +36,6 @@ function countdown() {
 
 countdown();
 
-
-
-
-
 function createBubbles() {
     const bubblesContainer = document.querySelector('.bubbles-container');
     const bubbleCount = 100;
@@ -57,16 +53,23 @@ function createBubbles() {
         bubblesContainer.appendChild(bubble);
     }
 }
+
 // Show Winners Popup
 const showWinnersButton = document.querySelector('.show-winners');
 const popupOverlayWinners = document.getElementById('popup-overlay-winners');
 const popupCloseWinners = document.getElementById('popup-close-winners');
-const paginationButtons = document.querySelectorAll('.pagination-button');
-const pages = document.querySelectorAll('.winners-leaderboard.page');
+const set1 = document.getElementById('set1');
+const set2 = document.getElementById('set2');
+const nav1 = document.getElementById('nav1');
+const nav2 = document.getElementById('nav2');
 
 showWinnersButton.addEventListener('click', (event) => {
     event.stopPropagation();
     popupOverlayWinners.style.display = 'flex';
+    set1.style.display = 'block'; // Show Set 1 by default
+    set2.style.display = 'none';  // Hide Set 2 by default
+    nav1.classList.add('active');  // Set nav1 as active
+    nav2.classList.remove('active');
 });
 
 popupCloseWinners.addEventListener('click', (event) => {
@@ -80,7 +83,107 @@ popupOverlayWinners.addEventListener('click', (event) => {
     }
 });
 
+// Pagination between sets
+nav1.addEventListener('click', () => {
+    set1.style.display = 'block'; // Show Set 1
+    set2.style.display = 'none';  // Hide Set 2
+    nav1.classList.add('active');  // Set nav1 as active
+    nav2.classList.remove('active');
+});
 
+nav2.addEventListener('click', () => {
+    set1.style.display = 'none';  // Hide Set 1
+    set2.style.display = 'block'; // Show Set 2
+    nav2.classList.add('active');  // Set nav2 as active
+    nav1.classList.remove('active');
+});
+
+const popupDate = document.getElementById('popup-date');  // Get the popup date element
+
+nav1.addEventListener('click', () => {
+    set1.style.display = 'block';  // Show Set 1
+    set2.style.display = 'none';   // Hide Set 2
+    nav1.classList.add('active');  // Set nav1 as active
+    nav2.classList.remove('active');
+    popupDate.textContent = '2024-10-12';  // Set date for Set 1
+});
+
+nav2.addEventListener('click', () => {
+    set1.style.display = 'none';   // Hide Set 1
+    set2.style.display = 'block';  // Show Set 2
+    nav2.classList.add('active');  // Set nav2 as active
+    nav1.classList.remove('active');
+    popupDate.textContent = '2024-9-28';  // Set date for Set 2
+});
+
+
+// How to Claim Prize Popup
+const howToClaimButton = document.querySelector('.how-to-claim-prize');
+const popupOverlayClaimPrize = document.getElementById('popup-overlay-claim');
+const popupCloseClaimPrize = document.getElementById('popup-close-claim');
+
+howToClaimButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayClaimPrize.style.display = 'flex';
+});
+
+popupCloseClaimPrize.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayClaimPrize.style.display = 'none';
+});
+
+popupOverlayClaimPrize.addEventListener('click', (event) => {
+    if (event.target === popupOverlayClaimPrize) {
+        popupOverlayClaimPrize.style.display = 'none';
+    }
+});
+
+// Contact Popup
+const contactButton = document.getElementById('contact-button');
+const popupOverlayContact = document.getElementById('popup-overlay-contact');
+const popupCloseContact = document.getElementById('popup-close-contact');
+
+contactButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayContact.style.display = 'flex';
+});
+
+popupCloseContact.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayContact.style.display = 'none';
+});
+
+popupOverlayContact.addEventListener('click', (event) => {
+    if (event.target === popupOverlayContact) {
+        popupOverlayContact.style.display = 'none';
+    }
+});
+
+// Disclaimer Popup
+const disclaimerButton = document.getElementById('disclaimer-button');
+const popupOverlayDisclaimer = document.getElementById('popup-overlay-disclaimer');
+const popupCloseDisclaimer = document.getElementById('popup-close-disclaimer');
+
+disclaimerButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayDisclaimer.style.display = 'flex';
+});
+
+popupCloseDisclaimer.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayDisclaimer.style.display = 'none';
+});
+
+popupOverlayDisclaimer.addEventListener('click', (event) => {
+    if (event.target === popupOverlayDisclaimer) {
+        popupOverlayDisclaimer.style.display = 'none';
+    }
+});
+
+window.onload = function() {
+    countdown();
+    createBubbles();
+};
 
 
 const YOUTUBE_RSS_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCxElbn4HsMP9hYoM_dYjX2g'; 
@@ -110,8 +213,6 @@ function displayYouTubeVideos(videos) {
 }
 
 
-
-
 window.onload = function() {
     countdown();
     fetchYouTubeVideos();
@@ -138,116 +239,15 @@ window.onload = function() {
         }
     });
 
+// Close the popup when the close button is clicked
+popupCloseWinners.addEventListener('click', (event) => {
+    event.stopPropagation();
+    popupOverlayWinners.style.display = 'none';
+});
 
-
-
-    // Show Winners Popup
-    const showWinnersButton = document.querySelector('.show-winners');
-    const popupOverlayWinners = document.getElementById('popup-overlay-winners');
-    const popupCloseWinners = document.getElementById('popup-close-winners');
-
-    showWinnersButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayWinners.style.display = 'flex';
-    });
-
-    popupCloseWinners.addEventListener('click', (event) => {
-        event.stopPropagation();
+// Close the popup when clicking outside the content area
+popupOverlayWinners.addEventListener('click', (event) => {
+    if (event.target === popupOverlayWinners) {
         popupOverlayWinners.style.display = 'none';
-    });
-
-    popupOverlayWinners.addEventListener('click', (event) => {
-        if (event.target === popupOverlayWinners) {
-            popupOverlayWinners.style.display = 'none';
-        }
-    });
-
-
-
-    
-    
-    
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-   // How to Claim Prize Popup
-const howToClaimButton = document.querySelector('.how-to-claim-prize');
-const popupOverlayClaimPrize = document.getElementById('popup-overlay-claim');
-const popupCloseClaimPrize = document.getElementById('popup-close-claim');
-
-howToClaimButton.addEventListener('click', (event) => {
-    event.stopPropagation();
-    popupOverlayClaimPrize.style.display = 'flex';
-});
-
-popupCloseClaimPrize.addEventListener('click', (event) => {
-    event.stopPropagation();
-    popupOverlayClaimPrize.style.display = 'none';
-});
-
-popupOverlayClaimPrize.addEventListener('click', (event) => {
-    if (event.target === popupOverlayClaimPrize) {
-        popupOverlayClaimPrize.style.display = 'none';
     }
-});
-
-
-    // Contact Popup
-    const contactButton = document.getElementById('contact-button');
-    const popupOverlayContact = document.getElementById('popup-overlay-contact');
-    const popupCloseContact = document.getElementById('popup-close-contact');
-
-    contactButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayContact.style.display = 'flex';
-    });
-
-    popupCloseContact.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayContact.style.display = 'none';
-    });
-
-    popupOverlayContact.addEventListener('click', (event) => {
-        if (event.target === popupOverlayContact) {
-            popupOverlayContact.style.display = 'none';
-        }
-    });
-
-    // Disclaimer Popup
-    const disclaimerButton = document.getElementById('disclaimer-button');
-    const popupOverlayDisclaimer = document.getElementById('popup-overlay-disclaimer');
-    const popupCloseDisclaimer = document.getElementById('popup-close-disclaimer');
-
-    disclaimerButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayDisclaimer.style.display = 'flex';
-    });
-
-    popupCloseDisclaimer.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupOverlayDisclaimer.style.display = 'none';
-    });
-
-    popupOverlayDisclaimer.addEventListener('click', (event) => {
-        if (event.target === popupOverlayDisclaimer) {
-            popupOverlayDisclaimer.style.display = 'none';
-        }
-    });
-};
+});}
